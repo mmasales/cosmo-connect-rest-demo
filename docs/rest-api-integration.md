@@ -2,7 +2,7 @@
 
 Connect any REST API to your federated graph using Cosmo Connect. Define a GraphQL schema, implement the HTTP calls in a plugin, and the Cosmo Router handles query planning, batching, and federation.
 
-> **Try it now:** Clone the [working example](https://github.com/mmasales/cosmo-connect-rest-demo) and run `make` to see all HTTP methods working against a live API in under 2 minutes.
+> **Try it now:** Clone the [working example](https://github.com/mmasales/cosmo-connect-rest-demo) and run `make` to see all HTTP methods working against a live API.
 
 ---
 
@@ -301,7 +301,7 @@ Pass `newClient()` into your service at startup and reuse it across all resolver
 
 ## Next steps
 
-- [Working example repo](https://github.com/mmasales/cosmo-connect-rest-demo) — clone and run in 2 minutes
+- [Working example repo](https://github.com/mmasales/cosmo-connect-rest-demo) 
 - [Router Plugins reference](https://cosmo-docs.wundergraph.com/router/gRPC/plugins)
 - [gRPC concepts](https://cosmo-docs.wundergraph.com/router/gRPC/concepts)
 - [Publishing plugins to Cosmo Cloud](https://cosmo-docs.wundergraph.com/cli/router/plugin/publish)
