@@ -1,4 +1,4 @@
-# REST API Integration
+# Cosmo Connect REST API Integration
 
 Connect any REST API to your federated graph using Cosmo Connect. Define a GraphQL schema, implement the HTTP calls in a plugin, and the Cosmo Router handles query planning, batching, and federation.
 
