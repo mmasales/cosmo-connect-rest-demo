@@ -30,7 +30,7 @@ curl https://cosmo-connect-demo-api-production.up.railway.app/products
 
 ## Quickstart
 
-**Prerequisites:** [Go 1.22+](https://go.dev/dl/) · [wgc CLI](https://cosmo-docs.wundergraph.com/cli/intro) (`npm i -g wgc@latest`) · [Docker](https://www.docker.com/)
+**Prerequisites:** [Go 1.25+](https://go.dev/dl/) · [wgc CLI](https://cosmo-docs.wundergraph.com/cli/intro) (`npm i -g wgc@latest`)
 
 ```bash
 git clone https://github.com/mmasales/cosmo-connect-rest-demo.git
@@ -105,7 +105,7 @@ More examples in [`examples/queries.graphql`](./examples/queries.graphql).
 1. Update the schema in `plugins/products-api/src/schema.graphql`
 2. Run `make generate` to regenerate the Go stubs
 3. Update the REST calls in `plugins/products-api/src/main.go`
-4. Set your base URL: `PRODUCTS_API_BASE_URL=https://your-api.com make`
+4. Set your base URL and optional API key: `PRODUCTS_API_BASE_URL=https://your-api.com PRODUCTS_API_KEY=your-key make`
 
 ---
 
