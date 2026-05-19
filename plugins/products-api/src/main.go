@@ -17,7 +17,7 @@ import (
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
-const defaultBaseURL = "https://demo-api.wundergraph.com"
+const defaultBaseURL = "https://cosmo-connect-demo-api-production.up.railway.app"
 
 // ---- REST client -------------------------------------------------------
 

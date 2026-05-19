@@ -1,5 +1,5 @@
 
-.PHONY: install-wgc build download start compose
+.PHONY: install-wgc build download start compose generate
 
 make: install-wgc download build compose start
 
@@ -21,3 +21,6 @@ download: install-wgc
 
 build:
 	cd plugins/products-api && make build
+
+generate:
+	cd plugins/products-api && make generate
