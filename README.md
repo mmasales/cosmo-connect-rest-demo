@@ -4,7 +4,7 @@
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
-> Add any REST API to your federated graph in minutes using [Cosmo Connect](https://cosmo-docs.wundergraph.com/connect/overview).
+> Add any REST API to your federated graph using [Cosmo Connect](https://cosmo-docs.wundergraph.com/connect/overview).
 
 [**Quickstart**](#quickstart) · [**How it works**](#how-it-works) · [**All HTTP methods**](#all-http-methods) · [**Use your own API**](#use-your-own-api) · [**Docs**](https://cosmo-docs.wundergraph.com/connect/overview)
 
