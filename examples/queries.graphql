@@ -1,0 +1,74 @@
+# Example queries for the Cosmo Connect REST demo.
+# Paste these into the GraphQL Playground at http://localhost:3010
+
+# ── GET /products ────────────────────────────────────────────────────────────
+
+query ListProducts {
+  products {
+    id
+    name
+    price
+    inventory
+  }
+}
+
+# ── GET /products/{id} ───────────────────────────────────────────────────────
+
+query GetProduct {
+  product(id: "1") {
+    id
+    name
+    price
+    description
+    inventory
+  }
+}
+
+# ── POST /products ───────────────────────────────────────────────────────────
+
+mutation CreateProduct {
+  createProduct(input: {
+    name: "Wireless Headphones"
+    price: 99.99
+    description: "Over-ear noise cancelling headphones"
+    inventory: 250
+  }) {
+    id
+    name
+    price
+  }
+}
+
+# ── PUT /products/{id} ───────────────────────────────────────────────────────
+
+mutation SetProduct {
+  setProduct(id: "1", input: {
+    name: "Wireless Headphones Pro"
+    price: 129.99
+    description: "Over-ear noise cancelling with ANC"
+    inventory: 180
+  }) {
+    id
+    name
+    price
+  }
+}
+
+# ── PATCH /products/{id} ─────────────────────────────────────────────────────
+
+mutation UpdateProduct {
+  updateProduct(id: "1", input: {
+    price: 109.99
+    inventory: 200
+  }) {
+    id
+    price
+    inventory
+  }
+}
+
+# ── DELETE /products/{id} ────────────────────────────────────────────────────
+
+mutation DeleteProduct {
+  deleteProduct(id: "1")
+}

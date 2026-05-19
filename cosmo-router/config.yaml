@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/wundergraph/cosmo/main/router/pkg/config/config.schema.json
+version: "1"
+
+# Cosmo Connect — gRPC plugin configuration
+plugins:
+  - name: products-api
+    # Path to the compiled plugin binary (built by `make build`)
+    path: /plugins/products-api/products-api
+
+# Open CORS for local playground use
+cors:
+  allow_origins:
+    - "*"
+  allow_methods:
+    - GET
+    - POST
+    - OPTIONS
+  allow_headers:
+    - "*"

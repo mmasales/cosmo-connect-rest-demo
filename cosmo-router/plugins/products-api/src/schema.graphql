@@ -1,0 +1,59 @@
+# Cosmo Connect — Products API subgraph schema
+#
+# Each field maps to a REST endpoint on the demo API:
+#   https://demo-api.wundergraph.com/products
+#
+# Swap that base URL in main.go for your own REST API.
+
+type Query {
+  # GET https://demo-api.wundergraph.com/products
+  products: [Product!]!
+
+  # GET https://demo-api.wundergraph.com/products/{id}
+  product(id: ID!): Product
+}
+
+type Mutation {
+  # POST https://demo-api.wundergraph.com/products
+  createProduct(input: CreateProductInput!): Product!
+
+  # PUT https://demo-api.wundergraph.com/products/{id}
+  setProduct(id: ID!, input: SetProductInput!): Product!
+
+  # PATCH https://demo-api.wundergraph.com/products/{id}
+  updateProduct(id: ID!, input: UpdateProductInput!): Product!
+
+  # DELETE https://demo-api.wundergraph.com/products/{id}
+  deleteProduct(id: ID!): Boolean!
+}
+
+type Product @key(fields: "id") {
+  id: ID!
+  name: String!
+  price: Float!
+  description: String
+  inventory: Int!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Float!
+  description: String
+  inventory: Int!
+}
+
+# PUT requires all fields
+input SetProductInput {
+  name: String!
+  price: Float!
+  description: String!
+  inventory: Int!
+}
+
+# PATCH — all fields optional, only send what you want to change
+input UpdateProductInput {
+  name: String
+  price: Float
+  description: String
+  inventory: Int
+}

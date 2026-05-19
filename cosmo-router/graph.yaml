@@ -1,0 +1,9 @@
+# Supergraph composition config.
+# wgc router compose reads this and produces config.json.
+version: 1
+
+subgraphs:
+  - name: products-api
+    routing_url: http://localhost:3010/graphql
+    schema:
+      file: ./plugins/products-api/src/schema.graphql
