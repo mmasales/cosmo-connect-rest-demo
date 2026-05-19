@@ -1,3 +1,5 @@
+[![Cosmo Connect](docs/assets/banner.png)](https://cosmo-docs.wundergraph.com/connect/overview)
+
 # Cosmo Connect — REST API Demo
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
