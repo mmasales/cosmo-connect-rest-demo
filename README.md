@@ -1,170 +1,91 @@
-# Cosmo Connect — REST API Demo
+# ProductsApi - Cosmo Router Plugin Project
 
-A minimal, runnable example showing how to integrate a REST API into a Cosmo federated graph using **Cosmo Connect**.
+Design your API with GraphQL Federation and implement with gRPC using Cosmo Router Plugins
 
-Clone it, run one command, and you have a working federated GraphQL API backed by live REST endpoints — ready to query in the playground.
+## ✨ Features
 
----
+- **GraphQL Schema + gRPC Implementation**: Design your API with GraphQL SDL and implement it using gRPC methods
+- **Embedded Subgraphs**: Run subgraphs directly inside the Cosmo Router for improved performance
+- **End-to-End Type Safety**: Auto-generated Go code from your GraphQL schema
+- **Simplified Testing**: Unit test your gRPC implementation with no external dependencies
 
-## What this demo does
+## 📝 Project Structure
 
-It exposes a **Products** GraphQL subgraph that calls a live REST API under the hood:
+This project sets up a complete environment for developing and testing Cosmo Router plugins:
 
 ```
-https://demo-api.wundergraph.com/products
+project-root/
+├── plugins/          # Contains all the plugins
+├── graph.yaml        # Supergraph configuration
+├── config.json       # Composed supergraph (generated)
+├── config.yaml       # Router configuration
+├── release/          # Router binary location
+│   └── router        # Router binary
+└── Makefile          # Automation scripts
 ```
 
-Every GraphQL operation maps to an HTTP method on that API:
+## 🚀 Getting Started
 
-| GraphQL operation | HTTP method | Endpoint |
-|---|---|---|
-| `query { products }` | GET | `/products` |
-| `query { product(id: "1") }` | GET | `/products/1` |
-| `mutation { createProduct(...) }` | POST | `/products` |
-| `mutation { setProduct(...) }` | PUT | `/products/1` |
-| `mutation { updateProduct(...) }` | PATCH | `/products/1` |
-| `mutation { deleteProduct(...) }` | DELETE | `/products/1` |
+### Setup
 
----
+1. Clone this repository
+2. Run the included Makefile commands
 
-## Prerequisites
+### Available Make Commands
 
-- [Go 1.22+](https://go.dev/dl/)
-- [wgc CLI](https://cosmo-docs.wundergraph.com/cli/intro) — `npm install -g wgc@latest`
-- [Docker](https://www.docker.com/) (to run the Cosmo Router)
+The Makefile automates the entire workflow with these commands:
 
----
+- `make`: Runs all commands in sequence (download, build, compose, start)
+- `make download`: Downloads the Cosmo Router binary to the `release` directory
+- `make build`: Builds the plugin from your source code with debug symbols enabled
+- `make generate`: Generates Go code from your GraphQL schema without compilation
+- `make test`: Validates your implementation with integration tests
+- `make compose`: Composes your supergraph from the configuration in `graph.yaml`
+- `make start`: Starts the Cosmo Router with your plugin
 
-## Quickstart
+### Quick Start
+
+To get everything running with a single command:
 
 ```bash
-git clone https://github.com/wundergraph/cosmo-connect-rest-demo.git
-cd cosmo-connect-rest-demo
 make
 ```
 
-That's it. `make` will:
-1. Generate the gRPC types from `schema.graphql`
-2. Build the products-api plugin binary
-3. Compose the supergraph into `config.json`
-4. Start the Cosmo Router on `http://localhost:3010`
+This will:
+1. Download the Cosmo Router binary
+2. Build your plugin from source
+3. Compose your supergraph
+4. Start the router on port 3010
 
-Open **http://localhost:3010** in your browser to access the GraphQL Playground.
+## 🧪 Testing Your Plugin
 
----
-
-## Try it
-
-Copy any of these into the playground at `http://localhost:3010`:
+Once running, open the GraphQL Playground at [http://localhost:3010](http://localhost:3010) and try this query:
 
 ```graphql
-# List all products
 query {
-  products {
-    id name price inventory
+  hello(name: "World") {
+    id
+    name
   }
-}
-
-# Get one product
-query {
-  product(id: "1") {
-    id name price description
-  }
-}
-
-# Create a product (POST)
-mutation {
-  createProduct(input: {
-    name: "Wireless Headphones"
-    price: 99.99
-    inventory: 250
-  }) {
-    id name
-  }
-}
-
-# Full update (PUT)
-mutation {
-  setProduct(id: "1", input: {
-    name: "Headphones Pro"
-    price: 129.99
-    description: "ANC edition"
-    inventory: 180
-  }) {
-    id name price
-  }
-}
-
-# Partial update (PATCH)
-mutation {
-  updateProduct(id: "1", input: { price: 109.99 }) {
-    id price
-  }
-}
-
-# Delete (DELETE)
-mutation {
-  deleteProduct(id: "1")
 }
 ```
 
-More examples are in [`examples/queries.graphql`](./examples/queries.graphql).
+## 🔧 Customizing Your Plugin
+
+1. Modify `src/schema.graphql` to define your GraphQL types and operations
+2. Edit `src/main.go` to implement the corresponding gRPC service methods
+3. Run `make generate` to regenerate code from your updated schema
+4. Run `make build` to compile your plugin
+5. Run `make test` to validate your implementation with integration tests
+6. Run `make compose` to update your supergraph
+7. Run `make start` to restart the router with your changes
+
+## 📚 Learn More
+
+For more information about Cosmo and building router plugins:
+- [Cosmo Documentation](https://cosmo-docs.wundergraph.com/)
+- [Cosmo Router Plugins Guide](https://cosmo-docs.wundergraph.com/connect/plugins)
 
 ---
 
-## Using your own REST API
-
-1. Open `cosmo-router/plugins/products-api/src/schema.graphql` and update the schema to match your API's shape.
-2. Open `cosmo-router/plugins/products-api/src/main.go` and change `defaultBaseURL` to your API's base URL.
-3. If your API requires auth, add your headers in `newClient()`.
-4. Run `make` again.
-
-The `PRODUCTS_API_BASE_URL` and `PRODUCTS_API_KEY` environment variables are also supported if you prefer not to hardcode values.
-
----
-
-## Project structure
-
-```
-cosmo-connect-rest-demo/
-├── Makefile                                         # Top-level: make → runs everything
-├── examples/
-│   └── queries.graphql                              # Ready-to-paste playground queries
-└── cosmo-router/
-    ├── Makefile                                     # generate → build → compose → start
-    ├── config.yaml                                  # Cosmo Router configuration
-    ├── graph.yaml                                   # Supergraph composition config
-    └── plugins/
-        └── products-api/
-            ├── Makefile                             # Plugin build steps
-            └── src/
-                ├── schema.graphql                   # ← Edit this to change your schema
-                ├── main.go                          # ← Edit this to change your REST calls
-                └── go.mod
-```
-
----
-
-## How it works
-
-Cosmo Connect uses a gRPC adapter layer:
-
-```
-GraphQL query
-     ↓
-Cosmo Router (translates to gRPC)
-     ↓
-products-api plugin (your Go code)
-     ↓
-REST API (HTTP)
-```
-
-You define the schema, run `make generate` to get type-safe Go stubs, then implement the HTTP calls. The router handles everything else — query planning, batching, and federation.
-
-→ [Full documentation](https://cosmo-docs.wundergraph.com/connect/overview)
-
----
-
-## License
-
-Apache 2.0 — see [LICENSE](./LICENSE).
+<p align="center">Made with ❤️ by <a href="https://wundergraph.com">WunderGraph</a></p>

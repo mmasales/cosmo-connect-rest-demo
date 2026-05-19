@@ -1,0 +1,179 @@
+{
+  "version": "1.0.0",
+  "messages": {
+    "Query": {
+      "fields": {
+        "products": 2,
+        "product": 3
+      },
+      "reservedNumbers": [
+        1
+      ]
+    },
+    "QueryHelloRequest": {
+      "fields": {
+        "name": 1
+      }
+    },
+    "QueryHello": {
+      "fields": {
+        "name": 1
+      }
+    },
+    "QueryHelloResponse": {
+      "fields": {
+        "hello": 1
+      }
+    },
+    "World": {
+      "fields": {
+        "id": 1,
+        "name": 2
+      }
+    },
+    "LookupProductByIdRequestKey": {
+      "fields": {
+        "id": 1
+      }
+    },
+    "LookupProductByIdRequest": {
+      "fields": {
+        "keys": 1
+      }
+    },
+    "LookupProductByIdResponse": {
+      "fields": {
+        "result": 1
+      }
+    },
+    "QueryProductsRequest": {
+      "fields": {}
+    },
+    "QueryProductsResponse": {
+      "fields": {
+        "products": 1
+      }
+    },
+    "QueryProductRequest": {
+      "fields": {
+        "id": 1
+      }
+    },
+    "QueryProduct": {
+      "fields": {
+        "id": 1
+      }
+    },
+    "QueryProductResponse": {
+      "fields": {
+        "product": 1
+      }
+    },
+    "Mutation": {
+      "fields": {
+        "createProduct": 1,
+        "setProduct": 2,
+        "updateProduct": 3,
+        "deleteProduct": 4
+      }
+    },
+    "MutationCreateProductRequest": {
+      "fields": {
+        "input": 1
+      }
+    },
+    "MutationCreateProduct": {
+      "fields": {
+        "input": 1
+      }
+    },
+    "MutationCreateProductResponse": {
+      "fields": {
+        "create_product": 1
+      }
+    },
+    "MutationSetProductRequest": {
+      "fields": {
+        "id": 1,
+        "input": 2
+      }
+    },
+    "MutationSetProduct": {
+      "fields": {
+        "id": 1,
+        "input": 2
+      }
+    },
+    "MutationSetProductResponse": {
+      "fields": {
+        "set_product": 1
+      }
+    },
+    "MutationUpdateProductRequest": {
+      "fields": {
+        "id": 1,
+        "input": 2
+      }
+    },
+    "MutationUpdateProduct": {
+      "fields": {
+        "id": 1,
+        "input": 2
+      }
+    },
+    "MutationUpdateProductResponse": {
+      "fields": {
+        "update_product": 1
+      }
+    },
+    "MutationDeleteProductRequest": {
+      "fields": {
+        "id": 1
+      }
+    },
+    "MutationDeleteProduct": {
+      "fields": {
+        "id": 1
+      }
+    },
+    "MutationDeleteProductResponse": {
+      "fields": {
+        "delete_product": 1
+      }
+    },
+    "Product": {
+      "fields": {
+        "id": 1,
+        "name": 2,
+        "price": 3,
+        "description": 4,
+        "inventory": 5
+      }
+    },
+    "CreateProductInput": {
+      "fields": {
+        "name": 1,
+        "price": 2,
+        "description": 3,
+        "inventory": 4
+      }
+    },
+    "SetProductInput": {
+      "fields": {
+        "name": 1,
+        "price": 2,
+        "description": 3,
+        "inventory": 4
+      }
+    },
+    "UpdateProductInput": {
+      "fields": {
+        "name": 1,
+        "price": 2,
+        "description": 3,
+        "inventory": 4
+      }
+    }
+  },
+  "enums": {}
+}

@@ -1,17 +1,23 @@
-.PHONY: start build compose generate clean
 
-# Clone, run `make` — that's it.
-start: build compose
-	$(MAKE) -C cosmo-router start
+.PHONY: install-wgc build download start compose
+
+make: install-wgc download build compose start
+
+install-wgc:
+	@which wgc > /dev/null 2>&1 || npm install -g wgc@latest
+
+start:
+	./release/router
+
+compose: install-wgc
+	wgc router compose -i graph.yaml -o config.json
+
+download: install-wgc
+	@if [ ! -f release/router ]; then \
+		rm -rf release && wgc router download-binary -o release && chmod +x release/router; \
+	else \
+		echo "Router binary already exists, skipping download"; \
+	fi
 
 build:
-	$(MAKE) -C cosmo-router build
-
-compose:
-	$(MAKE) -C cosmo-router compose
-
-generate:
-	$(MAKE) -C cosmo-router generate
-
-clean:
-	$(MAKE) -C cosmo-router clean
+	cd plugins/products-api && make build

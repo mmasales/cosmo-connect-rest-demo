@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "service": "ProductsApiService",
+  "operationMappings": [
+    {
+      "type": "OPERATION_TYPE_QUERY",
+      "original": "products",
+      "mapped": "QueryProducts",
+      "request": "QueryProductsRequest",
+      "response": "QueryProductsResponse"
+    },
+    {
+      "type": "OPERATION_TYPE_QUERY",
+      "original": "product",
+      "mapped": "QueryProduct",
+      "request": "QueryProductRequest",
+      "response": "QueryProductResponse"
+    },
+    {
+      "type": "OPERATION_TYPE_MUTATION",
+      "original": "createProduct",
+      "mapped": "MutationCreateProduct",
+      "request": "MutationCreateProductRequest",
+      "response": "MutationCreateProductResponse"
+    },
+    {
+      "type": "OPERATION_TYPE_MUTATION",
+      "original": "setProduct",
+      "mapped": "MutationSetProduct",
+      "request": "MutationSetProductRequest",
+      "response": "MutationSetProductResponse"
+    },
+    {
+      "type": "OPERATION_TYPE_MUTATION",
+      "original": "updateProduct",
+      "mapped": "MutationUpdateProduct",
+      "request": "MutationUpdateProductRequest",
+      "response": "MutationUpdateProductResponse"
+    },
+    {
+      "type": "OPERATION_TYPE_MUTATION",
+      "original": "deleteProduct",
+      "mapped": "MutationDeleteProduct",
+      "request": "MutationDeleteProductRequest",
+      "response": "MutationDeleteProductResponse"
+    }
+  ],
+  "entityMappings": [
+    {
+      "typeName": "Product",
+      "kind": "entity",
+      "key": "id",
+      "rpc": "LookupProductById",
+      "request": "LookupProductByIdRequest",
+      "response": "LookupProductByIdResponse",
+      "requiredFieldMappings": []
+    }
+  ],
+  "typeFieldMappings": [
+    {
+      "type": "Query",
+      "fieldMappings": [
+        {
+          "original": "products",
+          "mapped": "products",
+          "argumentMappings": []
+        },
+        {
+          "original": "product",
+          "mapped": "product",
+          "argumentMappings": [
+            {
+              "original": "id",
+              "mapped": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Mutation",
+      "fieldMappings": [
+        {
+          "original": "createProduct",
+          "mapped": "create_product",
+          "argumentMappings": [
+            {
+              "original": "input",
+              "mapped": "input"
+            }
+          ]
+        },
+        {
+          "original": "setProduct",
+          "mapped": "set_product",
+          "argumentMappings": [
+            {
+              "original": "id",
+              "mapped": "id"
+            },
+            {
+              "original": "input",
+              "mapped": "input"
+            }
+          ]
+        },
+        {
+          "original": "updateProduct",
+          "mapped": "update_product",
+          "argumentMappings": [
+            {
+              "original": "id",
+              "mapped": "id"
+            },
+            {
+              "original": "input",
+              "mapped": "input"
+            }
+          ]
+        },
+        {
+          "original": "deleteProduct",
+          "mapped": "delete_product",
+          "argumentMappings": [
+            {
+              "original": "id",
+              "mapped": "id"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Product",
+      "fieldMappings": [
+        {
+          "original": "id",
+          "mapped": "id",
+          "argumentMappings": []
+        },
+        {
+          "original": "name",
+          "mapped": "name",
+          "argumentMappings": []
+        },
+        {
+          "original": "price",
+          "mapped": "price",
+          "argumentMappings": []
+        },
+        {
+          "original": "description",
+          "mapped": "description",
+          "argumentMappings": []
+        },
+        {
+          "original": "inventory",
+          "mapped": "inventory",
+          "argumentMappings": []
+        }
+      ]
+    },
+    {
+      "type": "CreateProductInput",
+      "fieldMappings": [
+        {
+          "original": "name",
+          "mapped": "name",
+          "argumentMappings": []
+        },
+        {
+          "original": "price",
+          "mapped": "price",
+          "argumentMappings": []
+        },
+        {
+          "original": "description",
+          "mapped": "description",
+          "argumentMappings": []
+        },
+        {
+          "original": "inventory",
+          "mapped": "inventory",
+          "argumentMappings": []
+        }
+      ]
+    },
+    {
+      "type": "SetProductInput",
+      "fieldMappings": [
+        {
+          "original": "name",
+          "mapped": "name",
+          "argumentMappings": []
+        },
+        {
+          "original": "price",
+          "mapped": "price",
+          "argumentMappings": []
+        },
+        {
+          "original": "description",
+          "mapped": "description",
+          "argumentMappings": []
+        },
+        {
+          "original": "inventory",
+          "mapped": "inventory",
+          "argumentMappings": []
+        }
+      ]
+    },
+    {
+      "type": "UpdateProductInput",
+      "fieldMappings": [
+        {
+          "original": "name",
+          "mapped": "name",
+          "argumentMappings": []
+        },
+        {
+          "original": "price",
+          "mapped": "price",
+          "argumentMappings": []
+        },
+        {
+          "original": "description",
+          "mapped": "description",
+          "argumentMappings": []
+        },
+        {
+          "original": "inventory",
+          "mapped": "inventory",
+          "argumentMappings": []
+        }
+      ]
+    }
+  ],
+  "enumMappings": [],
+  "resolveMappings": []
+}

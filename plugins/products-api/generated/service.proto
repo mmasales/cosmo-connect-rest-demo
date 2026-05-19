@@ -1,0 +1,131 @@
+syntax = "proto3";
+package service;
+
+option go_package = "github.com/wundergraph/cosmo/plugin";
+
+import "google/protobuf/wrappers.proto";
+
+// Service definition for ProductsApiService
+service ProductsApiService {
+  // Lookup Product entity by id
+  rpc LookupProductById(LookupProductByIdRequest) returns (LookupProductByIdResponse) {}
+  rpc MutationCreateProduct(MutationCreateProductRequest) returns (MutationCreateProductResponse) {}
+  rpc MutationDeleteProduct(MutationDeleteProductRequest) returns (MutationDeleteProductResponse) {}
+  rpc MutationSetProduct(MutationSetProductRequest) returns (MutationSetProductResponse) {}
+  rpc MutationUpdateProduct(MutationUpdateProductRequest) returns (MutationUpdateProductResponse) {}
+  rpc QueryProduct(QueryProductRequest) returns (QueryProductResponse) {}
+  rpc QueryProducts(QueryProductsRequest) returns (QueryProductsResponse) {}
+}
+
+// Key message for Product entity lookup
+message LookupProductByIdRequestKey {
+  // Key field for Product entity lookup.
+  string id = 1;
+}
+
+// Request message for Product entity lookup.
+message LookupProductByIdRequest {
+  /*
+   * List of keys to look up Product entities.
+   * Order matters - each key maps to one entity in LookupProductByIdResponse.
+   */
+  repeated LookupProductByIdRequestKey keys = 1;
+}
+
+// Response message for Product entity lookup.
+message LookupProductByIdResponse {
+  /*
+   * List of Product entities in the same order as the keys in LookupProductByIdRequest.
+   * Always return the same number of entities as keys. Use null for entities that cannot be found.
+   * 
+   * Example:
+   *   LookupUserByIdRequest:
+   *     keys:
+   *       - id: 1
+   *       - id: 2
+   *   LookupUserByIdResponse:
+   *     result:
+   *       - id: 1 # User with id 1 found
+   *       - null  # User with id 2 not found
+   */
+  repeated Product result = 1;
+}
+
+// Request message for products operation.
+message QueryProductsRequest {
+}
+// Response message for products operation.
+message QueryProductsResponse {
+  repeated Product products = 1;
+}
+// Request message for product operation.
+message QueryProductRequest {
+  string id = 1;
+}
+// Response message for product operation.
+message QueryProductResponse {
+  Product product = 1;
+}
+// Request message for createProduct operation.
+message MutationCreateProductRequest {
+  CreateProductInput input = 1;
+}
+// Response message for createProduct operation.
+message MutationCreateProductResponse {
+  Product create_product = 1;
+}
+// Request message for setProduct operation.
+message MutationSetProductRequest {
+  string id = 1;
+  SetProductInput input = 2;
+}
+// Response message for setProduct operation.
+message MutationSetProductResponse {
+  Product set_product = 1;
+}
+// Request message for updateProduct operation.
+message MutationUpdateProductRequest {
+  string id = 1;
+  UpdateProductInput input = 2;
+}
+// Response message for updateProduct operation.
+message MutationUpdateProductResponse {
+  Product update_product = 1;
+}
+// Request message for deleteProduct operation.
+message MutationDeleteProductRequest {
+  string id = 1;
+}
+// Response message for deleteProduct operation.
+message MutationDeleteProductResponse {
+  bool delete_product = 1;
+}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  double price = 3;
+  google.protobuf.StringValue description = 4;
+  int32 inventory = 5;
+}
+
+message CreateProductInput {
+  string name = 1;
+  double price = 2;
+  google.protobuf.StringValue description = 3;
+  int32 inventory = 4;
+}
+
+message SetProductInput {
+  string name = 1;
+  double price = 2;
+  string description = 3;
+  int32 inventory = 4;
+}
+
+message UpdateProductInput {
+  google.protobuf.StringValue name = 1;
+  google.protobuf.DoubleValue price = 2;
+  google.protobuf.StringValue description = 3;
+  google.protobuf.Int32Value inventory = 4;
+}
